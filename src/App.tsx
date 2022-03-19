@@ -45,6 +45,10 @@ const App: FC = () => {
             Tranfer playlist from one streaming platform to another, stress
             free!
           </p>
+          <p className="description small">
+            (Currently does not support Apple music 😔, becuase Apple is
+            behaving bitchy! 😑)
+          </p>
           <Playlist isLoading={isLoading} error={isError} data={data?.data} />
         </main>
       </div>

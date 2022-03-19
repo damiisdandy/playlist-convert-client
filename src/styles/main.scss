@@ -76,6 +76,9 @@ html {
         color: #bbb;
         text-align: center;
         margin-top: 2rem;
+        &.small {
+          font-size: 1.3rem;
+        }
       }
     }
   }
