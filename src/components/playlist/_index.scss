@@ -1,0 +1,227 @@
+.Playlist {
+  margin-top: 6rem;
+  padding: 1rem;
+  .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    .image {
+      height: 20rem;
+      height: 20rem;
+      .info-image {
+        height: inherit;
+        width: inherit;
+        object-fit: cover;
+        border-radius: 0.5rem;
+        box-shadow: $shadow-sm;
+      }
+    }
+    &-detail {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 1rem;
+      .name {
+        font-size: 1.7rem;
+      }
+      .info {
+        display: block;
+        font-size: 1.4rem;
+        color: #aaa;
+        font-style: italic;
+      }
+      .who {
+        font-size: 1.3rem;
+      }
+      .detail {
+        font-size: 1.2rem;
+        color: #aaa;
+      }
+    }
+  }
+  .Tracks {
+    margin: 2rem 0;
+    align-items: flex-start;
+    gap: 0.5rem;
+    .Track {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 1rem;
+      background-color: rgba(black, 0.2);
+      flex-direction: row;
+      border-radius: 0.5rem;
+      gap: 1rem;
+      transition: $transition-mid;
+      &:hover {
+        background-color: rgba(black, 0.5);
+      }
+      .image {
+        height: 3rem;
+        width: 3rem;
+        & > img {
+          height: inherit;
+          width: inherit;
+          border-radius: 0.5rem;
+        }
+      }
+      &-details {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+      &-info {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        .title {
+          font-size: 1.1em;
+          width: 25rem;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .title-bottom {
+          display: flex;
+          gap: 0.5rem;
+          align-items: center;
+          .explicit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+            background-color: #5e2a2acc;
+            height: 1.2rem;
+            width: 1.2rem;
+            border-radius: 0.2rem;
+          }
+          .artists {
+            width: 20rem;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #aaa;
+          }
+        }
+      }
+
+      .duration {
+        justify-self: flex-end;
+      }
+    }
+  }
+  & > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+  .floating-genie {
+    & > span {
+      font-size: 10rem;
+      animation: $floater;
+    }
+    & > p {
+      font-size: 1.4rem;
+      text-align: center;
+      color: #aaa;
+    }
+  }
+  .loader {
+    .loading {
+      animation: $spinner;
+      font-size: 4rem;
+    }
+    & > p {
+      font-size: 1.4rem;
+    }
+  }
+  .error {
+    .loading {
+      animation: $spinner;
+      font-size: 4rem;
+    }
+    & > span {
+      font-size: 10rem;
+    }
+    & > p {
+      font-size: 1.4rem;
+    }
+  }
+}
+
+@include tablet {
+  .Playlist {
+    padding: 0rem 2rem;
+    .info {
+      flex-direction: row;
+      justify-content: start;
+      padding: 0 2rem;
+      &-detail {
+        align-items: flex-start;
+        text-align: start;
+        .name {
+          font-size: 4rem;
+          font-weight: bold;
+        }
+        .info {
+          font-size: 1.6rem;
+        }
+        .who {
+          font-size: 1.5rem;
+        }
+      }
+    }
+    .Tracks {
+      .Track {
+        padding: 1rem 2rem;
+        .image {
+          height: 6rem;
+          width: 6rem;
+          & > img {
+            height: inherit;
+            width: inherit;
+          }
+        }
+        &-info {
+          .title {
+            font-size: 1.6rem;
+            width: 50vw;
+          }
+          .title-bottom {
+            .explicit {
+              height: 1.4rem;
+              width: 1.4rem;
+              font-size: 1.2rem;
+            }
+            .artists {
+              width: 40vw;
+              font-size: 1.4rem;
+            }
+          }
+        }
+        .duration {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}
+
+@include large {
+  .Playlist {
+    padding: 0rem 5rem;
+    .Tracks {
+      margin: 2rem;
+    }
+  }
+}

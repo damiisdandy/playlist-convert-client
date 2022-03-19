@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@import "./variables", "./responsive";
+
+// components
+@import "../components/navbar/index";
+@import "../components/button/index";
+@import "../components/playlist/index";
+
+* {
+  &,
+  &::after,
+  &::before {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+  }
+}
+
+html {
+  font-size: 10px;
+  font-family: "Inter", sans-serif;
+  background-color: #151515;
+  color: white;
+  a {
+    &,
+    &:visited,
+    &:link {
+      color: white;
+      text-decoration: none;
+    }
+  }
+}
+
+@keyframes spinner {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes float {
+  from {
+    transform: translateY(-1rem);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.App {
+  .main {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    z-index: 1;
+    main {
+      overflow-y: scroll;
+      .header {
+        padding: 0rem 2rem;
+        font-size: 3.5rem;
+        text-align: center;
+        font-weight: 800;
+        text-transform: capitalize;
+        margin-top: 1rem;
+      }
+      .description {
+        padding: 0rem 2rem;
+        font-size: 1.7rem;
+        color: #bbb;
+        text-align: center;
+        margin-top: 2rem;
+      }
+    }
+  }
+  .background-image {
+    position: fixed;
+    z-index: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    img {
+      z-index: 0;
+      width: inherit;
+      height: inherit;
+      object-fit: cover;
+      filter: blur(7px) brightness(50%);
+    }
+  }
+}
+
+@include large {
+  .App {
+    .main {
+      main {
+        .header {
+          font-size: 7rem;
+        }
+        .description {
+          font-size: 1.8rem;
+        }
+      }
+    }
+  }
+}

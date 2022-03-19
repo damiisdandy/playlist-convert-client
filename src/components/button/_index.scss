@@ -1,0 +1,17 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 3rem;
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: $transition-fast;
+  &:active {
+    transform: translateY(0rem) scale(0.95);
+  }
+  .spinner {
+    animation: $spinner;
+  }
+}

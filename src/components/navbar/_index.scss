@@ -1,0 +1,72 @@
+.Navbar {
+  display: grid;
+  gap: 2rem;
+  padding: 2rem;
+  align-items: center;
+  grid-template-areas:
+    "logo links"
+    "search search ";
+  h1 {
+    grid-area: logo;
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: 2rem;
+    color: #ddd;
+  }
+  .Input {
+    grid-area: search;
+    display: flex;
+    align-items: stretch;
+    gap: 1rem;
+    input {
+      height: 4rem;
+      width: 70%;
+      background-color: rgba(white, 0.1);
+      border-radius: 1rem;
+      color: white;
+      font-size: 1.5rem;
+      padding: 0rem 2rem;
+      box-shadow: $shadow-sm;
+    }
+    .button {
+      width: 30%;
+      padding: 1rem;
+    }
+  }
+  .link {
+    justify-self: flex-end;
+    font-size: 1.5rem;
+    color: #aaa;
+  }
+}
+
+@include tablet {
+  .Navbar {
+    .Input {
+      input {
+        width: 60rem;
+      }
+      .button {
+        width: 20%;
+      }
+    }
+  }
+}
+
+@include large {
+  .Navbar {
+    padding: 4rem 6rem;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    .Input {
+      input {
+        width: 40rem;
+      }
+      .button {
+        width: auto;
+        padding: 1rem 2rem;
+      }
+    }
+  }
+}

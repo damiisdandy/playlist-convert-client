@@ -1,0 +1,11 @@
+// shadows
+$shadow-sm: 0 1rem 9rem rgba(black, 0.2);
+
+// transitions
+$transition-slow: all 500ms ease;
+$transition-mid: all 350ms ease;
+$transition-fast: all 150ms ease;
+
+// animations
+$spinner: spinner 1s linear infinite;
+$floater: float 1s ease-in-out alternate infinite;
