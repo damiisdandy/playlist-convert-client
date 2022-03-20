@@ -1,6 +1,7 @@
 /// <reference types="react-scripts" />
 
 interface Track {
+  id: string
   title: string
   url: string
   artists: string
@@ -20,4 +21,6 @@ interface Playlist {
   duration: string
   trackCount: number
   tracks: Track[]
+  platform: "YOUTUBE" | "SPOTIFY" | "APPLE"
+  similarity: number
 }

@@ -7,8 +7,17 @@
     align-items: center;
     gap: 2rem;
     .image {
+      position: relative;
       height: 20rem;
-      height: 20rem;
+      width: 20rem;
+      & > svg {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        z-index: 4;
+        font-size: 2rem;
+        box-shadow: 0 1rem 3rem rgba(black, 0.6);
+      }
       .info-image {
         height: inherit;
         width: inherit;
@@ -35,10 +44,53 @@
       }
       .who {
         font-size: 1.3rem;
+        font-weight: 500;
       }
       .detail {
         font-size: 1.2rem;
         color: #aaa;
+        font-weight: 400;
+      }
+    }
+    .select {
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      &.small {
+        font-size: 1rem;
+      }
+    }
+    .converter {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      justify-content: stretch;
+      width: 100%;
+      &-btn {
+        cursor: pointer;
+        font-size: 1.6rem;
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        padding: 1rem 0;
+        border-radius: 1rem;
+        font-weight: 600;
+        color: white;
+        transition: $transition-mid;
+        &.yt {
+          background-color: rgba(#c4302b, 0.6);
+        }
+        &.spotify {
+          background-color: rgba(#1db954, 0.6);
+        }
+        &.apple {
+          background-color: rgba(white, 0.8);
+          color: black;
+        }
+        &:active {
+          transform: scale(0.9);
+        }
       }
     }
   }
@@ -64,6 +116,9 @@
         height: 3rem;
         width: 3rem;
         & > img {
+          max-width: 3rem;
+          max-height: 3rem;
+          overflow: hidden;
           height: inherit;
           width: inherit;
           border-radius: 0.5rem;
@@ -80,7 +135,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         .title {
-          font-size: 1.1em;
+          font-size: 1.3em;
           width: 25rem;
           text-overflow: ellipsis;
           white-space: nowrap;
@@ -103,6 +158,7 @@
             border-radius: 0.2rem;
           }
           .artists {
+            font-size: 1.2rem;
             width: 20rem;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -115,6 +171,7 @@
 
       .duration {
         justify-self: flex-end;
+        font-size: 1.2rem;
       }
     }
   }
@@ -188,6 +245,9 @@
           height: 6rem;
           width: 6rem;
           & > img {
+            max-width: 6rem;
+            max-height: 6rem;
+            overflow: hidden;
             height: inherit;
             width: inherit;
           }

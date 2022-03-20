@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import App from "./App";
+import { Toaster } from "react-hot-toast";
 import reportWebVitals from "./reportWebVitals";
 import "./styles/main.scss";
 
@@ -10,6 +11,12 @@ const queryClient = new QueryClient();
 ReactDOM.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
+      <Toaster
+        position="top-center"
+        containerStyle={{
+          fontSize: "1.6rem",
+        }}
+      />
       <App />
     </QueryClientProvider>
   </React.StrictMode>,

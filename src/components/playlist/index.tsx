@@ -1,16 +1,50 @@
-import { FC } from "react";
+import { FC, useRef } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import Track from "./track";
+import { BsSpotify, BsYoutube, BsApple } from "react-icons/bs";
+import { useMutation } from "react-query";
+import { axiosInstance } from "../../config";
+import toast from "react-hot-toast";
 
 interface PlaylistProps {
   isLoading?: boolean;
   error?: boolean;
   data?: Playlist;
+  isDisplay?: boolean;
+  setFetchedPlaylist: any;
 }
 
-const Playlist: FC<PlaylistProps> = ({ isLoading, error, data }) => {
+const Playlist: FC<PlaylistProps> = ({
+  isLoading,
+  error,
+  data,
+  isDisplay,
+  setFetchedPlaylist,
+}) => {
+  const playlistRef = useRef(null);
+  const { mutate, isLoading: loading } = useMutation(
+    (data) => axiosInstance.post("/generate-playlist", data),
+    {
+      onError: () => {
+        toast.error("Problem generating playlist");
+      },
+      onSuccess: (data) => {
+        setFetchedPlaylist(data.data);
+        // @ts-ignore
+        playlistRef.current.scrollIntoView();
+        toast.success("Playlist generated", {
+          icon: "🧞‍♀️",
+          style: {
+            backgroundColor: "rgba(0,0,0,0.9)",
+            color: "#fff",
+          },
+        });
+      },
+    }
+  );
+
   return (
-    <div className="Playlist">
+    <div className="Playlist" ref={playlistRef}>
       {isLoading ? (
         <div className="loader">
           <AiOutlineLoading3Quarters className="loading" />
@@ -30,6 +64,13 @@ const Playlist: FC<PlaylistProps> = ({ isLoading, error, data }) => {
         <>
           <div className="info">
             <div className="image">
+              {data.platform === "APPLE" ? (
+                <BsApple />
+              ) : data.platform === "SPOTIFY" ? (
+                <BsSpotify />
+              ) : (
+                <BsYoutube />
+              )}
               <img
                 src={data.thumbnail}
                 alt={data.title}
@@ -51,11 +92,94 @@ const Playlist: FC<PlaylistProps> = ({ isLoading, error, data }) => {
                 </span>{" "}
                 )
               </p>
+              <p className={`select ${isDisplay && "small"}`}>
+                {isDisplay
+                  ? `Generated playlist with ${data.similarity}% accuracy`
+                  : "choose streaming platform"}
+              </p>
+              {!isDisplay ? (
+                <div className="converter">
+                  {data.platform !== "YOUTUBE" && (
+                    <button
+                      className="converter-btn yt"
+                      disabled={loading}
+                      onClick={() =>
+                        // @ts-ignore
+                        mutate({
+                          thumbnail: data.thumbnail,
+                          platform: "YOUTUBE",
+                          queries: data.tracks.map((el) => el.searchKey),
+                        })
+                      }
+                    >
+                      {loading ? (
+                        <AiOutlineLoading3Quarters className="spinner" />
+                      ) : (
+                        <>
+                          <BsYoutube />
+                          <span>Youtube</span>
+                        </>
+                      )}
+                    </button>
+                  )}
+                  {data.platform !== "SPOTIFY" && (
+                    <button
+                      className="converter-btn spotify"
+                      disabled={loading}
+                      onClick={() =>
+                        // @ts-ignore
+                        mutate({
+                          thumbnail: data.thumbnail,
+                          platform: "SPOTIFY",
+                          queries: data.tracks.map((el) => el.searchKey),
+                        })
+                      }
+                    >
+                      {loading ? (
+                        <AiOutlineLoading3Quarters className="spinner" />
+                      ) : (
+                        <>
+                          <BsSpotify />
+                          <span>Spotify</span>
+                        </>
+                      )}
+                    </button>
+                  )}
+                  {data.platform !== "APPLE" && (
+                    <button
+                      className="converter-btn apple"
+                      onClick={() => {
+                        toast.error("Apple music coming soon", {
+                          icon: "🧞‍♂️",
+                          style: {
+                            backgroundColor: "rgba(0,0,0,0.9)",
+                            color: "#fff",
+                          },
+                        });
+                      }}
+                    >
+                      <BsApple />
+                      <span>Apple</span>
+                    </button>
+                  )}
+                </div>
+              ) : (
+                <button className="converter-btn apple">
+                  {data.platform === "SPOTIFY" ? (
+                    <BsSpotify />
+                  ) : data.platform === "APPLE" ? (
+                    <BsApple />
+                  ) : (
+                    <BsYoutube />
+                  )}
+                  <span>Signin</span>
+                </button>
+              )}
             </div>
           </div>
           <div className="Tracks">
             {data.tracks.map((el) => (
-              <Track key={el.searchKey} {...el} />
+              <Track key={el.id} {...el} />
             ))}
           </div>
         </>

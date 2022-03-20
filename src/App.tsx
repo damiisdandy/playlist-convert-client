@@ -8,10 +8,12 @@ import { Helmet } from "react-helmet";
 
 const App: FC = () => {
   const [value, setValue] = useState("");
+  const [fetchedPlaylist, setFetchedPlaylist] = useState<Playlist | null>(null);
 
   const { isLoading, mutate, data, isError } = useMutation(
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
+      setFetchedPlaylist(null);
       return axiosInstance.post("/get-playlist", { url: value });
     }
   );
@@ -19,6 +21,7 @@ const App: FC = () => {
   const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setValue(e.target.value);
   };
+
   return (
     <div className="App">
       <Helmet>
@@ -49,7 +52,13 @@ const App: FC = () => {
             (Currently does not support Apple music 😔, becuase Apple is
             behaving bitchy! 😑)
           </p>
-          <Playlist isLoading={isLoading} error={isError} data={data?.data} />
+          <Playlist
+            isDisplay={fetchedPlaylist !== null}
+            isLoading={isLoading}
+            setFetchedPlaylist={setFetchedPlaylist}
+            error={isError}
+            data={fetchedPlaylist || data?.data}
+          />
         </main>
       </div>
     </div>

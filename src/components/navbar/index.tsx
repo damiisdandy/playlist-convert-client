@@ -26,7 +26,7 @@ const Navbar: FC<NavbarProps> = ({ mutate, onChange, value, isLoading }) => {
       </form>
       <a
         className="link"
-        href="https://damiisdandy.com"
+        href="https://www.damiisdandy.com"
         target="_blank"
         rel="noreferrer"
       >
