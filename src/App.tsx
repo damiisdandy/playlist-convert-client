@@ -45,7 +45,7 @@ const App: FC = () => {
             free!
           </p>
           <p className="description small">
-            (Currently does not support Apple music 😔, becuase Apple is
+            (Currently does not support Apple music 😔, because Apple is
             behaving bitchy! 😑)
           </p>
           <Playlist
