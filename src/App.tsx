@@ -5,6 +5,7 @@ import Playlist from "./components/playlist";
 import { axiosInstance } from "./config";
 import gradientBackground from "./images/background.jpeg";
 import { Helmet } from "react-helmet";
+import Seo from "./components/seo";
 
 const App: FC = () => {
   const [value, setValue] = useState("");
@@ -24,11 +25,7 @@ const App: FC = () => {
 
   return (
     <div className="App">
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Hoodini</title>
-        <link rel="canonical" href="http://mysite.com/example" />
-      </Helmet>
+      <Seo />
       <div className="background-image">
         <img src={gradientBackground} alt="gradient background" />
       </div>
