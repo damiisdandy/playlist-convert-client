@@ -107,11 +107,9 @@ const Playlist: FC<PlaylistProps> = ({
                 </span>{" "}
                 )
               </p>
-              <p className={`select ${isDisplay && "small"}`}>
-                {isDisplay
-                  ? `Generated playlist with ${data.similarity}% accuracy`
-                  : "choose streaming platform"}
-              </p>
+              {!isDisplay && (
+                <p className="select">choose streaming platform</p>
+              )}
               {!isDisplay ? (
                 <div className="converter">
                   {data.platform !== "YOUTUBE" && (
@@ -123,7 +121,7 @@ const Playlist: FC<PlaylistProps> = ({
                         mutate({
                           thumbnail: data.thumbnail,
                           platform: "YOUTUBE",
-                          queries: data.tracks.map((el) => el.searchKey),
+                          tracks: data.tracks,
                         })
                       }
                     >
@@ -146,7 +144,7 @@ const Playlist: FC<PlaylistProps> = ({
                         mutate({
                           thumbnail: data.thumbnail,
                           platform: "SPOTIFY",
-                          queries: data.tracks.map((el) => el.searchKey),
+                          tracks: data.tracks,
                         })
                       }
                     >
