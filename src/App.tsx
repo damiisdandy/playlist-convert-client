@@ -4,7 +4,6 @@ import Navbar from "./components/navbar";
 import Playlist from "./components/playlist";
 import { axiosInstance } from "./config";
 import gradientBackground from "./images/background.jpeg";
-import { Helmet } from "react-helmet";
 import Seo from "./components/seo";
 
 const App: FC = () => {
