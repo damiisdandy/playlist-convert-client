@@ -36,6 +36,13 @@
       .name {
         font-size: 1.7rem;
       }
+      .name-input {
+        color: white;
+        text-align: center;
+        font-size: 1.7rem;
+        border: none;
+        background-color: transparent;
+      }
       .info {
         display: block;
         font-size: 1.4rem;
@@ -229,6 +236,12 @@
         .name {
           font-size: 4rem;
           font-weight: bold;
+        }
+        .name-input {
+          font-size: 4rem;
+          font-weight: bold;
+          border: none;
+          background-color: transparent;
         }
         .info {
           font-size: 1.6rem;

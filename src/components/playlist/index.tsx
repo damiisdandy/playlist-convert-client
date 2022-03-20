@@ -1,4 +1,4 @@
-import { FC, useRef } from "react";
+import { ChangeEventHandler, FC, useRef, useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import Track from "./track";
 import { BsSpotify, BsYoutube, BsApple } from "react-icons/bs";
@@ -21,6 +21,12 @@ const Playlist: FC<PlaylistProps> = ({
   isDisplay,
   setFetchedPlaylist,
 }) => {
+  const [playlistName, setPlaylistName] = useState("NEW PLAYLIST");
+
+  const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setPlaylistName(e.target.value);
+  };
+
   const playlistRef = useRef(null);
   const { mutate, isLoading: loading } = useMutation(
     (data) => axiosInstance.post("/generate-playlist", data),
@@ -78,7 +84,16 @@ const Playlist: FC<PlaylistProps> = ({
               />
             </div>
             <div className="info-detail">
-              <p className="name">{data.title}</p>
+              {isDisplay ? (
+                <input
+                  className="name-input"
+                  value={playlistName}
+                  onChange={onChange}
+                  placeholder="Enter playlist name"
+                />
+              ) : (
+                <p className="name">{data.title}</p>
+              )}
               <p
                 className="info"
                 dangerouslySetInnerHTML={{
